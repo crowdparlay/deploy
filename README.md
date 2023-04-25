@@ -7,13 +7,13 @@
 
 ### CLI
 - kubectl
-- istioctl
+- istioctl (см. [Download Istio](https://istio.io/latest/docs/setup/getting-started/#download))
 
 
 
 # Подготовка
 
-Инициализируем Istio в дефолтном неймспейсе.
+Инициализируем Istio в дефолтном неймспейсе (см. [Install Istio](https://istio.io/latest/docs/setup/getting-started/#install)).
 ```fish
 istioctl install
 kubectl label namespace default istio-injection=enabled
@@ -48,3 +48,19 @@ kubectl create -f https://strimzi.io/install/latest?namespace=kafka -n kafka
 ```fish
 kubectl apply -f https://strimzi.io/examples/latest/kafka/kafka-persistent-single.yaml -n kafka
 ```
+
+
+
+# Тестируем Kafka
+
+В одном терминале запускаем продьюсера.
+```posh
+kubectl -n kafka run kafka-producer -ti --image=quay.io/strimzi/kafka:0.34.0-kafka-3.4.0 --rm=true --restart=Never -- bin/kafka-console-producer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic
+```
+
+В другом — консьюмера.
+```posh
+kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.34.0-kafka-3.4.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic --from-beginning
+```
+
+Ну и собственно гоняем plain text сообщения через `stdin`/`stdout`, чтобы проверить работоспособность.
