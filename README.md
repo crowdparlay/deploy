@@ -11,12 +11,17 @@
 
 
 
-# Поднимаем Istio и Kiali
+# Поднимаем Istio
 
 Инициализируем Istio в дефолтном неймспейсе (см. [Install Istio](https://istio.io/latest/docs/setup/getting-started/#install)).
 ```fish
 istioctl install
 kubectl label namespace default istio-injection=enabled
+```
+
+Деплоим Prometheus.
+```fish
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.17/samples/addons/prometheus.yaml
 ```
 
 Деплоим Kiali.
@@ -36,6 +41,7 @@ istioctl dashboard kiali
 Выделяем для неё отдельный неймспейс.
 ```fish
 kubectl create namespace kafka
+kubectl label namespace kafka istio-injection=enabled
 ```
 
 Деплоим оператор Strimzi (см. [Strimzi Quick Start](https://strimzi.io/quickstarts/)).
