@@ -11,7 +11,7 @@
 
 
 
-# Подготовка
+# Поднимаем Istio и Kiali
 
 Инициализируем Istio в дефолтном неймспейсе (см. [Install Istio](https://istio.io/latest/docs/setup/getting-started/#install)).
 ```fish
