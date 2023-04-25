@@ -38,7 +38,7 @@ istioctl dashboard kiali
 kubectl create namespace kafka
 ```
 
-Деплоим Strimzi (см. [Strimzi Quick Start](https://strimzi.io/quickstarts/)).
+Деплоим оператор Strimzi (см. [Strimzi Quick Start](https://strimzi.io/quickstarts/)).
 > Apply the Strimzi install files, including ClusterRoles, ClusterRoleBindings and some Custom Resource Definitions (CRDs). The CRDs define the schemas used for the custom resources (CRs, such as Kafka, KafkaTopic and so on) you will be using to manage Kafka clusters, topics and users.
 ```fish
 kubectl create -f https://strimzi.io/install/latest?namespace=kafka -n kafka
