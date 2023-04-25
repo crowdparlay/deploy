@@ -14,16 +14,16 @@
 # Подготовка
 
 Инициализируем Istio.
-```sh
+```fish
 istioctl install
 ```
 
 Деплоим Kiali.
-```sh
+```fish
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.17/samples/addons/kiali.yaml
 ```
 
 Открываем Kiali Dashboard.
-```sh
+```fish
 istioctl dashboard kiali
 ```
