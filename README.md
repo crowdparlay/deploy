@@ -16,6 +16,7 @@
 Инициализируем Istio.
 ```fish
 istioctl install
+kubectl label namespace default istio-injection=enabled
 ```
 
 Деплоим Kiali.
