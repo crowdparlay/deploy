@@ -14,23 +14,23 @@
 # Поднимаем Istio
 
 Инициализируем Istio в дефолтном неймспейсе (см. [Install Istio](https://istio.io/latest/docs/setup/getting-started/#install)).
-```fish
+```posh
 istioctl install
 kubectl label namespace default istio-injection=enabled
 ```
 
 Деплоим Prometheus.
-```fish
+```posh
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.17/samples/addons/prometheus.yaml
 ```
 
 Деплоим Kiali.
-```fish
+```posh
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.17/samples/addons/kiali.yaml
 ```
 
 Открываем Kiali Dashboard.
-```fish
+```posh
 istioctl dashboard kiali
 ```
 
@@ -39,19 +39,21 @@ istioctl dashboard kiali
 # Поднимаем Kafka
 
 Выделяем для неё отдельный неймспейс.
-```fish
+```posh
 kubectl create namespace kafka
 kubectl label namespace kafka istio-injection=enabled
 ```
 
-Деплоим оператор Strimzi (см. [Strimzi Quick Start](https://strimzi.io/quickstarts/)).
+Деплоим оператор Strimzi (см. [Strimzi Quick Start](https://strimzi.io/quickstarts/))
+
 > Apply the Strimzi install files, including ClusterRoles, ClusterRoleBindings and some Custom Resource Definitions (CRDs). The CRDs define the schemas used for the custom resources (CRs, such as Kafka, KafkaTopic and so on) you will be using to manage Kafka clusters, topics and users.
-```fish
+
+```posh
 kubectl create -f https://strimzi.io/install/latest?namespace=kafka -n kafka
 ```
 
 Создаём кластер Apache Kafka.
-```fish
+```posh
 kubectl apply -f https://strimzi.io/examples/latest/kafka/kafka-persistent-single.yaml -n kafka
 ```
 
